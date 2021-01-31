@@ -6,6 +6,7 @@ import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
 import QuizBackground from '../src/components/QuizBackground';
 import AlternativesForm from '../src/components/AlternativesForm';
+import { useRouter } from 'next/router';
 
 function LoadingWidget() {
   return (
@@ -22,6 +23,9 @@ function LoadingWidget() {
 }
 
 function ResultWidget({results}) {
+  const router = useRouter();
+  const { name } = router.query;
+
   const totalCorrect = results.reduce((isCorrect, total) => { 
     isCorrect ? total++ : total;
     return total;
@@ -30,7 +34,7 @@ function ResultWidget({results}) {
   return (
     <Widget>
       <Widget.Header>
-        {totalCorrect === results.length ? 'Parabéns!' : 'Poxa...'}
+        {totalCorrect === results.length ? `Parabéns ${name}!` : `Poxa ${name}...`}
       </Widget.Header>
 
       <Widget.Content>
