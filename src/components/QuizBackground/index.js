@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const QuizBackground = styled.div`
+const QuizBackground = styled.div`
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -31,3 +31,5 @@ export const QuizBackground = styled.div`
     }
   }
 `;
+
+export default QuizBackground;

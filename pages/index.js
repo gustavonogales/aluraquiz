@@ -1,22 +1,15 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import db from '../db.json';
-import { Widget } from '../src/components/Widget';
-import { Footer } from '../src/components/Footer';
-import { GitHubCorner } from '../src/components/GitHubCorner';
-import { QuizBackground } from '../src/components/QuizBackground';
+import Widget from '../src/components/Widget';
+import Footer from '../src/components/Footer';
+import QuizLogo from '../src/components/QuizLogo';
+import Button from '../src/components/Button';
+import QuizContainer from '../src/components/QuizContainer';
+import Input from '../src/components/Input';
+import GitHubCorner from '../src/components/GitHubCorner';
+import QuizBackground from '../src/components/QuizBackground';
 import { useCallback, useState } from 'react';
-
-export const QuizContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 10%;
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
-`;
 
 export default function Home() {
   const router = useRouter();
@@ -34,17 +27,22 @@ export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
+        <QuizLogo />
         <Widget>
           <Widget.Header>
             <h1>The legend of Zelda</h1>
           </Widget.Header>
           <Widget.Content>
             <form onSubmit={onHandleSubmit}>
-              <input onChange={handleInputChange} 
-                placeholder='Preencha com seu nome'/>
-              <button type="submit" disabled={!!!name}>
+              <Input 
+                onChange={handleInputChange} 
+                placeholder='Preencha com seu nome'
+                name="nome"
+                value={name}
+              />
+              <Button type="submit" disabled={!!!name}>
                 Jogar {name}
-              </button>
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
